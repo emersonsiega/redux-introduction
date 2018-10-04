@@ -1,17 +1,24 @@
-function createStore() {
+// "Library Code"
+/**
+ * The store should have four parts:
+ * 1. The state
+ * 2. Get the state
+ * 3. Listen to changes on the state
+ * 4. Update the state
+ * 
+ * Rules:
+ * 1. Just an event can change the state
+ * 2. The function that returns the new state must be a pure function
+ */
+function createStore( reducer ) {
+    let state
+    let listeners = []
+
+    const getState = () => state
+
     /**
-     * The store should have four parts:
-     * 1. The state
-     * 2. Get the state
-     * 3. Listen to changes on the state
-     * 4. Update the state
+     * Listen for changes on the state
      */
-
-     let state
-     let listeners = []
-
-     const getState = () => state
-
     const subscribe = (listener) => {
         listeners.push(listener)
         // unsubscribe function
@@ -20,8 +27,28 @@ function createStore() {
         }
     }
 
-     return {
-         getState,
-         subscribe
-     }
+    /**
+     * Call action to change state and notify all the listeners
+     */
+    const dispatch = (action) => {
+        state = reducer( state, action )
+        listeners.forEach( listener => listener() )
+    }
+
+    return {
+        getState,
+        subscribe,
+        dispatch
+    }
+}
+
+/**
+ * Reducer from the "App"
+ */
+function todos(state = [], action) {
+    if (action.type === 'ADD_TODO') {
+        return state.concat([action.todo])
+    }
+
+    return state
 }
