@@ -3,7 +3,7 @@ const todos = require('./todos')
 const goals = require('./goals')
 
 /**
- * Create an root reducer to centralize all reducers
+ * Create a root reducer to centralize all reducers
  */
 const rootReducer = ( state = {}, action ) => {
     return {
