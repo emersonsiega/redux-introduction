@@ -18,7 +18,30 @@ const todosReducer = ( state = [], action ) => {
     }
 }
 
+const addTodoAction = todo => {
+    return {
+        type: actions.ADD_TODO,
+        todo
+    }
+}
+
+const removeTodoAction = id => {
+    return {
+        type: actions.REMOVE_TODO,
+        id
+    }
+}
+
+const toggleTodoAction = id => {
+    return {
+        type: actions.TOGGLE_TODO,
+        id
+    }
+}
+
 module.exports = {
-    actions,
-    todosReducer
+    todosReducer,
+    addTodoAction,
+    removeTodoAction,
+    toggleTodoAction
 }

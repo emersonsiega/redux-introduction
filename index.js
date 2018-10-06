@@ -15,62 +15,38 @@ const rootReducer = ( state = {}, action ) => {
 const store = redux.createStore( rootReducer )
 const unsubscribe = store.subscribe( () => console.log( `State changed: \n`, store.getState()) )
 
-store.dispatch({
-    type: todos.actions.ADD_TODO,
-    todo: {
-        id: 0,
-        name: 'Learn Redux',
-        complete: false
-    }
-})
+store.dispatch(todos.addTodoAction({
+    id: 0,
+    name: 'Learn Redux',
+    complete: false
+}))
 
-store.dispatch({
-    type: todos.actions.ADD_TODO,
-    todo: {
-        id: 1,
-        name: 'Be FODA in React',
-        complete: false
-    }
-})
+store.dispatch(todos.addTodoAction({
+    id: 1,
+    name: 'Be FODA in React',
+    complete: false
+}))
 
-store.dispatch({
-    type: todos.actions.ADD_TODO,
-    todo: {
-        id: 2,
-        name: 'Learn ES6',
-        complete: true
-    }
-})
+store.dispatch(todos.addTodoAction({
+    id: 2,
+    name: 'Learn ES6',
+    complete: true
+}))
 
-store.dispatch({
-    type: todos.actions.REMOVE_TODO,
-    id: 1
-})
+store.dispatch(todos.removeTodoAction(1))
 
-store.dispatch({
-    type: todos.actions.TOGGLE_TODO,
-    id: 2
-})
+store.dispatch(todos.toggleTodoAction(2))
 
-store.dispatch({
-    type: goals.actions.ADD_GOAL,
-    goal: {
-        id: 0,
-        name: 'Learn Redux'
-    }
-})
+store.dispatch(goals.addGoalAction({
+    id: 0,
+    name: 'Learn Redux'
+}))
 
-store.dispatch({
-    type: goals.actions.ADD_GOAL,
-    goal: {
-        id: 1,
-        name: 'Lose 20 pounds'
-    }
-})
+store.dispatch(goals.addGoalAction({
+    id: 1,
+    name: 'Lose 20 pounds'
+}))
 
-store.dispatch({
-    type: goals.actions.REMOVE_GOAL,
-    id: 0
-})
+store.dispatch(goals.removeGoalAction(0))
 
 unsubscribe()

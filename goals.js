@@ -14,7 +14,22 @@ const goalsReducer = ( state = [], action ) => {
     }
 }
 
+const addGoalAction = goal => {
+    return {
+        type: actions.ADD_GOAL,
+        goal
+    }
+}
+
+const removeGoalAction = id => {
+    return {
+        type: actions.REMOVE_GOAL,
+        id
+    }
+}
+
 module.exports = {
-    actions,
-    goalsReducer
+    goalsReducer,
+    addGoalAction,
+    removeGoalAction
 }
